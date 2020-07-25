@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <NavBar />
-        <h1 className="ml-5" >HackOrganized</h1>
+        <h1 className="ml-5 mt-4" >HackOrganized</h1>
       </div>
     </BrowserRouter>
   );
