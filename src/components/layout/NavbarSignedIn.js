@@ -11,7 +11,7 @@ export default function NavbarSignedIn (){
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/">Hommme</Nav.Link>
           <Nav.Link href="/teambuilder">TeamBuilder</Nav.Link>
           <Nav.Link href="/brainstorm">BrainStorm</Nav.Link>
           <Nav.Link href="/projectdetails">Project Details</Nav.Link>
