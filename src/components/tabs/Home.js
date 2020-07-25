@@ -14,7 +14,6 @@ export default function Home() {
                 Hackathons usually last around 24-48 hours, so you don't have much time to waste! Quickly
                 find a few teammates and decide on what project you want to create.
               </Card.Text>
-              <Card.Link href="#">Card Link</Card.Link>
             </Card.Body>
           </Card>
         </Col>

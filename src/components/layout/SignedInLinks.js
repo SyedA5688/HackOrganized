@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 
 export default function SignedInLinks() {
   return (
@@ -9,13 +9,14 @@ export default function SignedInLinks() {
           <Nav.Link href="/teambuilder">TeamBuilder</Nav.Link>
           <Nav.Link href="/brainstorm">BrainStorm</Nav.Link>
           <Nav.Link href="/projectdetails">Project Details</Nav.Link>
-          <Nav.Link href="/teamassignments">Assignments</Nav.Link>
-          <Nav.Link href="/currentlyworking">Currently Working</Nav.Link>
+          <Nav.Link href="/assignments">Assignments</Nav.Link>
+          <Nav.Link href="/currentwork">Current Work</Nav.Link>
           <Nav.Link href="/resources">Resources</Nav.Link>
         </Nav>
         <Nav className="mr-sm-2">
           <Nav.Link href="/account">Account</Nav.Link>
-          <Nav.Link href="/signout">Sign Out</Nav.Link>
+          {/* Signout Button */}
+          <Button variant="secondary" className="ml-2" onClick={() => {}} >Logout</Button>{' '}
         </Nav>
       </Navbar.Collapse>
   )

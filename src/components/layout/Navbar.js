@@ -6,7 +6,7 @@ import SignedOutLinks from './SignedOutLinks';
 export default function NavBar() {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
-      <Navbar.Brand href="/" className="ml-2" >HackOrganized</Navbar.Brand>
+      <Navbar.Brand href="/" className="ml-3 mr-4" >HackOrganized</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <SignedOutLinks />
     </Navbar>
