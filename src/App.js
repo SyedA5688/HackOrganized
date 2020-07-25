@@ -17,6 +17,7 @@ import SignUp from './components/auth/SignUp';
 import firebaseKey from './config/firebaseKey';
 import * as firebase from 'firebase';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -26,6 +27,7 @@ class App extends React.Component {
     if (!firebase.apps.length){
       firebase.initializeApp(firebaseKey.firebaseConfig);
     }
+    firebase.auth().onAuthStateChanged(this.onAuthChange);
   }
 
   onAuthChange = (user) => {

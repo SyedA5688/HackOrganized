@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
+import * as firebase from 'firebase';
 
 export default function NavbarSignedIn() {
   return (
@@ -19,7 +20,7 @@ export default function NavbarSignedIn() {
         <Nav className="mr-sm-2">
           <Nav.Link href="/account">Account</Nav.Link>
           {/* Signout Button */}
-          <Button variant="secondary" className="ml-2" onClick={() => {}} >Logout</Button>{' '}
+          <Button variant="secondary" className="ml-2" onClick={() => {firebase.auth().signOut();}} >Logout</Button>{' '}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
