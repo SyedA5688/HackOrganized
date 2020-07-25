@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavBar from './components/layout/Navbar';
 import Home from './components/tabs/Home';
+import About from './components/tabs/About';
 import Account from './components/tabs/Account';
 import Assignments from './components/tabs/Assignments';
 import BrainStorm from './components/tabs/BrainStorm';
@@ -20,6 +21,7 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/about" component={About} />
           <Route exact path="/account" component={Account} />
           <Route exact path="/assignments" component={Assignments} />
           <Route exact path="/brainstorm" component={BrainStorm} />

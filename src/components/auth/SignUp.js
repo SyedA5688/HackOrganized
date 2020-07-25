@@ -54,7 +54,7 @@ export default class SignIn extends React.Component {
                 <Form.Control type="password" id="password" placeholder="Password"  onChange={this.handleChange} />
               </Form.Group>
               <Button variant="primary" type="submit">
-                Submit
+                Signup
               </Button>
             </Form>
           </Card.Body>

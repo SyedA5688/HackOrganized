@@ -6,7 +6,6 @@ export default function SignedOutLinks() {
     <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/projectdetails">Project Details</Nav.Link>
           <Nav.Link href="/resources">Resources</Nav.Link>
         </Nav>
         <Nav className="mr-sm-2">
