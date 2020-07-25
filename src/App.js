@@ -1,14 +1,19 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavBar from './components/layout/Navbar';
+import Home from './components/tabs/Home';
+import SignIn from './components/auth/SignIn';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App" >
         <NavBar />
-        <h1 className="ml-5 mt-4" >HackOrganized</h1>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={SignIn} />
+        </Switch>
       </div>
     </BrowserRouter>
   );
