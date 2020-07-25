@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {getFirestore} from 'redux-firestore'
-import {getFirebase} from 'reacat-redux-firebase'
+//import {getFirestore} from 'redux-firestore'
+//import {getFirebase} from 'react-redux-firebase'
 
 
 ReactDOM.render(
