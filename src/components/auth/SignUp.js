@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Card, Form, Button } from 'react-bootstrap';
-
+import {createUser} from '../../actions/projectActions'
+//import {connect} from 'react-redux'
 
 export default class SignIn extends React.Component {
   constructor(props) {
@@ -21,7 +22,8 @@ export default class SignIn extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    //console.log(this.state);
+    this.props.createUser(this.state)
   }
   
   render() {
@@ -63,3 +65,12 @@ export default class SignIn extends React.Component {
     )
   }
 }
+
+
+const mapDispatchToProps = (dispatch) =>{
+  return {
+    createUser: (project) => dispatch(createUser(project))
+  }
+}
+//export default connect(null, mapDispatchToProps)(createUser)
+

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Card, Form, Button } from 'react-bootstrap';
+import {signIn} from '../../actions/authActions'
 
 
 export default class SignIn extends React.Component {
@@ -19,7 +20,9 @@ export default class SignIn extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    //console.log(this.state);
+    this.props.signIn(this.state);
+
   }
   
   render() {
@@ -51,3 +54,10 @@ export default class SignIn extends React.Component {
     )
   }
 }
+
+const mapDispatchToProps= (dispatch) => {
+  return{
+    signIn: (creds) => dispatch(signIn(creds))
+  }
+}
+//export default connect(null, mapDispatchToProps)(SignIn)
