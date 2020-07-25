@@ -24,12 +24,19 @@ export default class SignIn extends React.Component {
     e.preventDefault();
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
-        console.log("Success");
+        let user = firebase.auth().currentUser.uid;
+        const databaseRef = firebase.database().ref("users").child(user);
+        databaseRef.set({
+          "name": this.state.firstName + " " + this.state.lastName,
+          "teammates": null,
+          "room": null,
+        });
       })
       .catch(() => {
         console.log("Error");
       })
-    // Upload data to firebase database
+    
+    this.props.history.push("/");
   }
   
   render() {

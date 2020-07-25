@@ -1,8 +1,10 @@
 import React from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
+import { useHistory } from "react-router-dom";
 import * as firebase from 'firebase';
 
-export default function NavbarSignedIn() {
+export default function NavbarSignedIn (){
+  let history = useHistory();
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Navbar.Brand href="/" className="ml-3 mr-4" >HackOrganized</Navbar.Brand>
@@ -20,7 +22,10 @@ export default function NavbarSignedIn() {
         <Nav className="mr-sm-2">
           <Nav.Link href="/account">Account</Nav.Link>
           {/* Signout Button */}
-          <Button variant="secondary" className="ml-2" onClick={() => {firebase.auth().signOut();}} >Logout</Button>{' '}
+          <Button variant="secondary" className="ml-2" onClick={() => {
+            firebase.auth().signOut();
+            history.push('/');
+          }} >Logout</Button>{' '}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
