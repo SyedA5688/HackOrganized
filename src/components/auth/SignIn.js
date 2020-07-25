@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Card, Form, Button } from 'react-bootstrap';
+import * as firebase from 'firebase';
 
 
 export default class SignIn extends React.Component {
@@ -19,7 +20,14 @@ export default class SignIn extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => {
+        console.log("Successful Sign in");
+      })
+      .catch((error) => {
+        console.log("Error");
+      })
+
   }
   
   render() {

@@ -1,9 +1,12 @@
 import React from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 
-export default function SignedInLinks() {
+export default function NavbarSignedIn() {
   return (
-    <Navbar.Collapse id="basic-navbar-nav">
+    <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar.Brand href="/" className="ml-3 mr-4" >HackOrganized</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/teambuilder">TeamBuilder</Nav.Link>
@@ -19,5 +22,6 @@ export default function SignedInLinks() {
           <Button variant="secondary" className="ml-2" onClick={() => {}} >Logout</Button>{' '}
         </Nav>
       </Navbar.Collapse>
+    </Navbar>
   )
 }
