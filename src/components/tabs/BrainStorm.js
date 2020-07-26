@@ -26,6 +26,7 @@ export default class BrainStorm extends React.Component
 
   componentWillUnmount() {
     this._isMounted = false;
+    firebase.database().ref("rooms/" + this.state.roomNumber + "/chats").remove();
   }
 
   updateState = () => {

@@ -70,7 +70,6 @@ export default class ProjectDetails extends React.Component
       return;
     }
     // Update in Firebase
-    console.log(this.state.categoryDropdown, this.state.textInput);
     let updates = {};
     if (this.state.categoryDropdown === "ProjectIdea") { updates["ProjectIdea"] = this.state.textInput }
     else if (this.state.categoryDropdown === "Framework") { updates["Framework"] = this.state.textInput }
@@ -135,7 +134,6 @@ export default class ProjectDetails extends React.Component
                   <Form.Control type="text" id="textInput" placeholder="Enter text" value={this.state.textInput} onChange={this.handleTextInputChange} />
                 </Form.Group>
 
-                {/* <div style={{flexDirection: "row"}} > */}
                 <ButtonGroup >
                   <Dropdown onSelect={(key, event) => { this.handleDropDownChange(key, event) }} >
                     <Dropdown.Toggle variant="secondary" id="dropdown-basic">
@@ -153,7 +151,6 @@ export default class ProjectDetails extends React.Component
                     Submit
                   </Button>
                 </ButtonGroup>
-                {/* </div> */}
               </Form>
             </Card>
           </Col>
