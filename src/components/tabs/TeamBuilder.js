@@ -9,7 +9,7 @@ export default class TeamBuilder extends React.Component
   constructor(props) {
     super(props);
     this.state = {
-      data: {},
+      allUsers: {},
       teammates: {},
       userName: "",
       enteredEmail: "",
@@ -19,16 +19,22 @@ export default class TeamBuilder extends React.Component
   componentDidMount() {
     this._isMounted = true;
     if (firebase.auth().currentUser != null) {
-      let userID = firebase.auth().currentUser.uid;
-      const databaseRef = firebase.database().ref();
-      databaseRef.on('value', snapshot => {
-        if (snapshot.exists() && this._isMounted) {
-          this.setState({ data: snapshot.val() });
-          this.setState({ teammates: this.state.data.users.teammates });
-          //this.setState({ userName: this.state.data[userID].name })
-        }
-      })
+      this.updateState();
     }
+  }
+
+  updateState = () => {
+    let userID = firebase.auth().currentUser.uid;
+    const databaseRef = firebase.database().ref();
+    databaseRef.once('value', snapshot => {
+      if (snapshot.exists() && this._isMounted) {
+        this.setState({ allUsers: snapshot.val().users });
+        //console.log(snapshot.val().users);
+        let usersObj = this.state.allUsers;
+        this.setState({ teammates: usersObj[userID].teammates });
+        this.setState({ userName: usersObj[userID].name });
+      }
+    })
   }
 
   componentWillUnmount() {
@@ -38,24 +44,32 @@ export default class TeamBuilder extends React.Component
   handleSubmit = (e) => {
     e.preventDefault();
     // Look up user with this email, add to team members list
+    let currentUserID = firebase.auth().currentUser.uid;
     firebase.database().ref("users").once('value', snapshot => {
       let userObj = snapshot.val();
       let keys = Object.keys(userObj); // Array of user ids
       keys.forEach(key => {
-        //console.log(userObj);
-        if (userObj.key.email === this.state.enteredEmail && userObj.key.roomNumber !=  null) {
-          this.addUserToTeam(key, userObj.key.roomNumber);
+        //console.log(userObj[key].email);
+        //console.log(userObj[key].roomNumber);
+        if (userObj[key].email === this.state.enteredEmail && userObj[key].roomNumber ==  null) {
+          this.addUserToTeam(key, userObj[currentUserID].roomNumber);
         }
       })
     })
   }
 
-  addUserToTeam = (userID, roomNum) => {
+  addUserToTeam = (teammateID, roomNum) => {
     // Add user to room of project group
-    let currentUser = firebase.auth().currentUser.uid;
-    firebase.database().ref("users" + currentUser + "/teammates").update({
-      
+    console.log("ran");
+    let currentUserID = firebase.auth().currentUser.uid;
+    firebase.database().ref("users/" + currentUserID + "/teammates").push(teammateID);
+    firebase.database().ref("rooms/" + roomNum + "/users").push(teammateID);
+    firebase.database().ref("users/" + teammateID + "/teammates").push(currentUserID);
+    firebase.database().ref("users/" + teammateID).update({
+      "roomNumber": roomNum
     })
+    // Rerender
+    this.updateState();
   }
 
   handleChange = (e) => {
@@ -71,22 +85,27 @@ export default class TeamBuilder extends React.Component
       }
       else {
         this.createRoom(Object.keys(snapshot.val()).length + 1);
-        
       }
     });
   }
 
   createRoom = (num) => {
     let uid = firebase.auth().currentUser.uid;
-    firebase.database().ref("rooms/" + num.toString() + "/users").update({
-      "uid": uid
-    });
+    firebase.database().ref("rooms/" + num.toString() + "/users").push(uid);
     firebase.database().ref("users/" + uid).update({
       "roomNumber": num
     })
   }
 
   render() {
+    const teammatesList = (this.state.teammates != null) ? (
+      <div>
+        {Object.keys(this.state.teammates).map(key => { 
+          return <Card.Text>{this.state.allUsers[this.state.allUsers[firebase.auth().currentUser.uid].teammates[key]].name}</Card.Text>
+        })}
+      </div>
+    ) : (<div></div>);
+
     return (
       <Container>
         <h1 style={{ marginTop: 40, marginBottom: 30, }} >Team Building Page</h1>
@@ -96,8 +115,12 @@ export default class TeamBuilder extends React.Component
             <Card class="card">
               <Card.Body class="body">
                 <h4>{this.state.userName} (Me)</h4>
+              <Card.Text class="text">
+                {teammatesList}
+              </Card.Text>
+            
               </Card.Body>
-              {teammatesList}
+              
             </Card>
           </Col>
           <Col>
