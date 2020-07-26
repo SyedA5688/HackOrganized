@@ -140,7 +140,7 @@ export default class TeamBuilder extends React.Component
                 </Form>
                 <h4> 
                 </h4>
-                <Button variant="light" onClick={this.handleCreateProjectClick} >Create Project Group</Button>{' '}
+                <Button style={{backgroundColor: 'white'}} variant="outline-secondary" onClick={this.handleCreateProjectClick} >Create Project Group</Button>{' '}
               </Card.Body>
             </Card>
           </Col>
