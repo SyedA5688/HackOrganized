@@ -115,8 +115,11 @@ export default class TeamBuilder extends React.Component
             <Card class="card">
               <Card.Body class="body">
                 <h4>{this.state.userName} (Me)</h4>
-              </Card.Body>
+              <Card.Text class="text">
               {teammatesList}
+              </Card.Text>
+              </Card.Body>
+              
             </Card>
           </Col>
           <Col>
