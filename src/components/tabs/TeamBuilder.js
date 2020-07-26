@@ -9,6 +9,7 @@ export default class TeamBuilder extends React.Component
   constructor(props) {
     super(props);
     this.state = {
+      data: {},
       teammates: {},
       userName: "",
       enteredEmail: "",
@@ -18,9 +19,16 @@ export default class TeamBuilder extends React.Component
   componentDidMount() {
     this._isMounted = true;
     if (firebase.auth().currentUser != null) {
-      let user = firebase.auth().currentUser.uid;
-      console.log(user);
-      const databaseRef = firebase.database().ref("users").child(user);
+      let userID = firebase.auth().currentUser.uid;
+      const databaseRef = firebase.database().ref();
+      databaseRef.on('value', snapshot => {
+        if (snapshot.exists() && this._isMounted) {
+          this.setState({ data: snapshot.val() });
+          this.setState({ teammates: this.state.data.users.teammates });
+          this.setState({ userName: this.state.data.users.userID.name })
+        }
+      })
+
       databaseRef.child("teamates").on('value', snapshot => {
         if (snapshot.exists() && this._isMounted) {
           this.setState({ teammates: snapshot.val() })
@@ -56,6 +64,10 @@ export default class TeamBuilder extends React.Component
 
   addUserToTeam = (userID, roomNum) => {
     // Add user to room of project group
+    let currentUser = firebase.auth().currentUser.uid;
+    firebase.database().ref("users" + currentUser + "/teammates").update({
+      
+    })
   }
 
   handleChange = (e) => {
@@ -80,6 +92,9 @@ export default class TeamBuilder extends React.Component
     let uid = firebase.auth().currentUser.uid;
     firebase.database().ref("rooms/" + num.toString() + "/users").update({
       "uid": uid
+    });
+    firebase.database().ref("users/" + uid).update({
+      "roomNumber": num
     })
   }
 
