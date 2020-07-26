@@ -60,3 +60,10 @@ export default class SignIn extends React.Component {
     )
   }
 }
+
+const mapDispatchToProps= (dispatch) => {
+  return{
+    signIn: (creds) => dispatch(signIn(creds))
+  }
+}
+//export default connect(null, mapDispatchToProps)(SignIn)
