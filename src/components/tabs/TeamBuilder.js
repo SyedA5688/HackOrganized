@@ -70,6 +70,7 @@ export default class TeamBuilder extends React.Component
     })
     // Rerender
     this.updateState();
+    this.setState({ enteredEmail: '' });
   }
 
   handleChange = (e) => {
@@ -138,7 +139,13 @@ export default class TeamBuilder extends React.Component
                       Before adding teammates, one member must create a project group below. Then, any member 
                       can search to add additional members.
                     </Card.Text>
-                    <Form.Control type="text" id="enteredEmail" placeholder="Enter team members' email" onChange={this.handleChange} />
+                    <Form.Control 
+                      type="text" 
+                      id="enteredEmail" 
+                      placeholder="Enter team members' email" 
+                      onChange={this.handleChange}
+                      value={this.state.enteredEmail}
+                    />
                   </Form.Group>
                   <Button variant="light" type="submit">Add Member </Button>
                 </Form>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Card, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Card, Form, Button } from 'react-bootstrap';
 
 export default class Account extends React.Component {
   constructor(props) {
@@ -25,7 +25,6 @@ export default class Account extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Profile Updated' + this.state.value);
     event.preventDefault();
   }
   
