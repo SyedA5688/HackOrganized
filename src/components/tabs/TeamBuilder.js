@@ -10,7 +10,7 @@ export default class TeamBuilder extends React.Component
         <Row>
           <Col>
             <h3 className="mb-3" >My Team</h3>
-            <Card style={styles.card}>
+            <Card >
               <Card.Body>
                 <Card.Text className="border-top border-secondary pt-2 px-2" >
                   Dummy Text
@@ -20,7 +20,7 @@ export default class TeamBuilder extends React.Component
           </Col>
           <Col>
             <h3 className="mb-3" >Add Team Members</h3>
-            <Card style={styles.card}>
+            <Card>
               <Card.Body>
                 <Card.Text className="border-top border-secondary pt-2 px-2" >
                   Dummy Text 2
