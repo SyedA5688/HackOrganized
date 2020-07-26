@@ -30,6 +30,7 @@ export default class SignIn extends React.Component {
           "name": this.state.firstName + " " + this.state.lastName,
           "teammates": null,
           "room": null,
+          "email": this.state.email,
         });
       })
       .catch(() => {

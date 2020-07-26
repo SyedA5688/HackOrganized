@@ -19,6 +19,8 @@ import * as firebase from 'firebase';
 
 
 class App extends React.Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +33,17 @@ class App extends React.Component {
   }
 
   onAuthChange = (user) => {
-    this.setState({isAuthenticated: !!user});
+    if (this._isMounted){
+      this.setState({isAuthenticated: !!user});
+    }
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {
@@ -66,7 +78,6 @@ class App extends React.Component {
               <Route exact path="/" component={Home} />
               <Route exact path="/about" component={About} />
               <Route exact path="/resources" component={Resources} />
-              <Route exact path="/teambuilder" component={TeamBuilder} />
               <Route exact path="/login" component={SignIn} />
               <Route exact path="/signup" component={SignUp} />
             </Switch>
