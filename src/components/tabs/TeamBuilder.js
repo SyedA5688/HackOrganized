@@ -25,7 +25,7 @@ export default class TeamBuilder extends React.Component
         if (snapshot.exists() && this._isMounted) {
           this.setState({ data: snapshot.val() });
           this.setState({ teammates: this.state.data.users.teammates });
-          this.setState({ userName: this.state.data[userID].name })
+          //this.setState({ userName: this.state.data[userID].name })
         }
       })
     }
@@ -127,15 +127,5 @@ export default class TeamBuilder extends React.Component
         </Row>
       </Container>
     )
-  }
-}
-
-const styles = {
-  card: {
-    width: '100%', 
-    marginTop: 20,
-    minHeight: 500,
-    borderRadius: 20,
-    padding: 15,
   }
 }
