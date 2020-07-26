@@ -5,7 +5,7 @@ card, .card {
     border-radius: 20px;
     padding: 10px;
     margin-bottom: 20px;   
-    background: linear-gradient(to top, #ffffff 0%, #fff9f7 70%);
+    background: linear-gradient(to bottom right, #dac2b1 0%,  #ffffff 100%);
 }
 text, .text{
     color: #062133;
@@ -14,9 +14,11 @@ text, .text{
     border-radius: 10px;
     text-align: justify;
     padding: 10pt;
-    border-top:3px solid;
+    border-style: solid;
+    border-width: 3px 0px 0px 0px;
+    border-color: #775a47;
     margin-top: 20px; 
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     
 }
 h3, .title {
@@ -25,7 +27,13 @@ h3, .title {
     font-weight: bold;
     margin-bottom: 15px;
     font-size: 22px;
-    
+}
+h4{
+    font-family: "Georgia" ;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 18px;
+    border-bottom: 1px solid; 
 }
 h1, .h1{
     margin-top: 40px; 
