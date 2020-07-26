@@ -42,13 +42,12 @@ export default class TeamBuilder extends React.Component
   handleSubmit = (e) => {
     e.preventDefault();
     // Look up user with this email, add to team members list
-    let userWithEmail = null;
     firebase.database().ref("users").once('value', snapshot => {
       let userObj = snapshot.val();
       let keys = Object.keys(userObj); // Array of user ids
       keys.forEach(key => {
         //console.log(userObj);
-        if (userObj.key.email == this.state.enteredEmail && userObj.key.roomNumber !=  null) {
+        if (userObj.key.email === this.state.enteredEmail && userObj.key.roomNumber !=  null) {
           this.addUserToTeam(key, userObj.key.roomNumber);
         }
       })
@@ -66,7 +65,22 @@ export default class TeamBuilder extends React.Component
   }
 
   handleCreateProjectClick = () => {
+    firebase.database().ref("rooms").once('value', (snapshot) => {
+      if (!snapshot.exists()) {
+        this.createRoom(1);
+      }
+      else {
+        this.createRoom(Object.keys(snapshot.val()).length + 1);
+        
+      }
+    });
+  }
 
+  createRoom = (num) => {
+    let uid = firebase.auth().currentUser.uid;
+    firebase.database().ref("rooms/" + num.toString() + "/users").update({
+      "uid": uid
+    })
   }
 
   render() {
