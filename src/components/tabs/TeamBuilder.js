@@ -92,17 +92,17 @@ export default class TeamBuilder extends React.Component
         <h1 style={{ marginTop: 40, marginBottom: 30, }} >Team Building Page</h1>
         <Row>
           <Col>
-            <h3 className="mb-3 text-center" >My Team</h3>
-            <Card style={styles.card} >
+            <h3 className="mb-3" >My Team</h3>
+            <Card >
               <Card.Body>
                 <h3 className="text-center border-bottom border-secondar pb-3" >{this.state.userName} (Me)</h3>
               </Card.Body>
               
             </Card>
           </Col>
-          <Col >
-            <h3 className="mb-3 text-center" >Add Team Members</h3>
-            <Card style={styles.card} >
+          <Col>
+            <h3 className="mb-3" >Add Team Members</h3>
+            <Card>
               <Card.Body>
                 <Form onSubmit={this.handleSubmit} >
                   <Form.Group controlId="formBasicEmail">

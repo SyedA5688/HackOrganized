@@ -1,15 +1,17 @@
 import React from 'react';
 import { Container, Card } from 'react-bootstrap';
+import './style.css'; 
+
 
 export default function About() {
   return (
     <Container>
-      <h1 className="mt-5" >About this Web App</h1>
-      <Card className="mt-5" style={{ borderRadius: 20, padding: 20 }} >
-      <Card.Body>
-        <Card.Title>HackOrganized Web Application</Card.Title>
+      <h1 >About this Web App</h1>
+      <Card class="card" style={{ borderRadius: 20, padding: 40 }} >
+      <Card.Body class="body">
+        <Card.Title class="title">HackOrganized Web Application</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">Created by Syed Rizvi and Melika Nassizadeh</Card.Subtitle>
-        <Card.Text>
+        <Card.Text class="text">
           This web application was created at Hacky Birthday MLH 2020, with the intention of making it easier for hackathon 
           groups, and especially beginners, to organize their project. Given that many events are moving fully online now, 
           there is a great need for hackathon teams to work together efficiently without having the speed of communication 
