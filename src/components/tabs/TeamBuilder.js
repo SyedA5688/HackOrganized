@@ -111,35 +111,36 @@ export default class TeamBuilder extends React.Component
         <h1 style={{ marginTop: 40, marginBottom: 30, }} >Team Building Page</h1>
         <Row>
           <Col>
-            <h3 className="mb-3" >My Team</h3>
-            <Card >
-              <Card.Body>
-                <h3 className="text-center border-bottom border-secondar pb-3" >{this.state.userName} (Me)</h3>
+            <h3 >My Team</h3>
+            <Card class="card">
+              <Card.Body class="body">
+                <h4>{this.state.userName} (Me)</h4>
               </Card.Body>
               {teammatesList}
             </Card>
           </Col>
           <Col>
-            <h3 className="mb-3" >Add Team Members</h3>
-            <Card>
-              <Card.Body>
+            <h3 >Add Team Members</h3>
+            <Card class="card">
+              <Card.Body class="body">
                 <Form onSubmit={this.handleSubmit} >
                   <Form.Group controlId="formBasicEmail">
-                    <h4 className="mb-3" >Search for Team Members</h4>
-                    <h6 className="text-muted mb-3">
+                    <h4>Search for Team Members</h4>
+                    <Card.Text class="text">
                       Enter your teammates email below and we will add them to your project group. In general, 
                       you may have up to 4 people in your project group, depending on the rules of the 
                       hackathon you are attending.
-                    </h6>
-                    <h6 className="text-muted mb-3">
+                  
                       Before adding teammates, one member must create a project group below. Then, any member 
                       can search to add additional members.
-                    </h6>
+                    </Card.Text>
                     <Form.Control type="text" id="enteredEmail" placeholder="Enter team members' email" onChange={this.handleChange} />
                   </Form.Group>
-                  <Button variant="primary" type="submit" >Add Member</Button>
+                  <Button variant="light" type="submit">Add Member </Button>
                 </Form>
-                <Button style={{ marginTop: 40, }} variant="success" size="lg" onClick={this.handleCreateProjectClick} >Create Project Group</Button>{' '}
+                <h4> 
+                </h4>
+                <Button variant="light" onClick={this.handleCreateProjectClick} >Create Project Group</Button>{' '}
               </Card.Body>
             </Card>
           </Col>
