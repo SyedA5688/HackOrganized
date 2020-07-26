@@ -25,19 +25,7 @@ export default class TeamBuilder extends React.Component
         if (snapshot.exists() && this._isMounted) {
           this.setState({ data: snapshot.val() });
           this.setState({ teammates: this.state.data.users.teammates });
-          this.setState({ userName: this.state.data.users.userID.name })
-        }
-      })
-
-      databaseRef.child("teamates").on('value', snapshot => {
-        if (snapshot.exists() && this._isMounted) {
-          this.setState({ teammates: snapshot.val() })
-        }
-      });
-      databaseRef.child("name").once('value', snapshot => {
-        console.log(snapshot.exists() && this._isMounted);
-        if (snapshot.exists() && this._isMounted) {
-          this.setState({ userName: snapshot.val() })
+          this.setState({ userName: this.state.data[userID].name })
         }
       })
     }
