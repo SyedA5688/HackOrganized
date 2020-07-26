@@ -29,7 +29,6 @@ export default class ProjectDetails extends React.Component
 
   componentWillUnmount() {
     this._isMounted = false;
-    this.updateState();
   }
 
   updateState = () => {
