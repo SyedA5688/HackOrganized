@@ -1,10 +1,6 @@
 import React from 'react';
 import { Container, Card, Form, Button } from 'react-bootstrap';
-<<<<<<< HEAD
 import * as firebase from 'firebase';
-=======
-import {signIn} from '../../actions/authActions'
->>>>>>> Designed About, Home, and Resources screens
 
 
 export default class SignIn extends React.Component {
@@ -24,7 +20,6 @@ export default class SignIn extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-<<<<<<< HEAD
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         console.log("Successful Sign in");
@@ -34,11 +29,6 @@ export default class SignIn extends React.Component {
       })
 
     this.props.history.push("/");
-=======
-    //console.log(this.state);
-    this.props.signIn(this.state);
-
->>>>>>> Designed About, Home, and Resources screens
   }
   
   render() {

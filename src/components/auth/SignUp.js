@@ -1,8 +1,13 @@
 import React from 'react';
 import { Container, Card, Form, Button } from 'react-bootstrap';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import * as firebase from 'firebase';
 
+=======
+import {createUser} from '../../actions/projectActions'
+//import {connect} from 'react-redux'
+>>>>>>> Designed About, Home, and Resources screens
 =======
 import {createUser} from '../../actions/projectActions'
 //import {connect} from 'react-redux'
@@ -28,6 +33,7 @@ export default class SignIn extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 <<<<<<< HEAD
+<<<<<<< HEAD
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         let user = firebase.auth().currentUser.uid;
@@ -44,6 +50,10 @@ export default class SignIn extends React.Component {
       })
     
     this.props.history.push("/");
+=======
+    //console.log(this.state);
+    this.props.createUser(this.state)
+>>>>>>> Designed About, Home, and Resources screens
 =======
     //console.log(this.state);
     this.props.createUser(this.state)
