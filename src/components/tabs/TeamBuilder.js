@@ -115,11 +115,8 @@ export default class TeamBuilder extends React.Component
             <Card class="card">
               <Card.Body class="body">
                 <h4>{this.state.userName} (Me)</h4>
-              <Card.Text class="text">
-              {teammatesList}
-              </Card.Text>
               </Card.Body>
-              
+              {teammatesList}
             </Card>
           </Col>
           <Col>
@@ -143,7 +140,7 @@ export default class TeamBuilder extends React.Component
                 </Form>
                 <h4> 
                 </h4>
-                <Button style={{backgroundColor: 'white'}} variant="outline-secondary" onClick={this.handleCreateProjectClick} >Create Project Group</Button>{' '}
+                <Button variant="light" onClick={this.handleCreateProjectClick} >Create Project Group</Button>{' '}
               </Card.Body>
             </Card>
           </Col>
