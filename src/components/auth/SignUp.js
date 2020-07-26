@@ -43,7 +43,7 @@ export default class SignIn extends React.Component {
   render() {
     return (
       <Container>
-        <h1 className="mt-5 text-center" >Log in to Start Organizing Your Group</h1>
+        <h1 className="mt-5 text-center" >Welcome, Sign Up To Begin!</h1>
         <Card className="mt-5" >
           <Card.Body className="p-5" >
             <Form onSubmit={this.handleSubmit} >
