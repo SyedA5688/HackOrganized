@@ -1,49 +1,112 @@
 import React from 'react';
-import { Container, Card, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Card, Form, Button } from 'react-bootstrap';
+import * as firebase from 'firebase';
 
 
+export default class Assignments extends React.Component
+{
+  _isMounted = false;
 
-export default class Assignments extends React.Component  {
   constructor(props) {
     super(props);
-    this.state = {value: ""};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      enteredAssignment: "",
+      enteredMember: "",
+      allAssignments: {},
+      roomNumber: -1,
+    };
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  componentDidMount() {
+    this._isMounted = true;
+    if (firebase.auth().currentUser != null) {
+      this.updateState();
+    }
   }
 
-  handleSubmit(event) {
-    alert('Your favorite flavor is: ' + this.state.value);
-    event.preventDefault();
+  componentWillUnmount() {
+    this._isMounted = false;
   }
+
+  updateState = () => {
+    let userID = firebase.auth().currentUser.uid;
+    firebase.database().ref("users/" + userID + "/roomNumber").once('value', (snapshot) => {
+      if (snapshot.exists() && this._isMounted) {
+        this.setState({ roomNumber: snapshot.val() });
+      }
+    }).then(() => {
+      if (this.state.roomNumber !== -1) {
+        firebase.database().ref("rooms/" + this.state.roomNumber + "/assignments").once('value', (snapshot) => {
+          if (snapshot.exists() && this._isMounted) {
+            this.setState({ allAssignments: snapshot.val() });
+          }
+        });
+      }
+    })
+  }
+
+  handleInputChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+  }
+
+  handleFormSubmit = (e) => {
+    e.preventDefault();
+    this.uploadAssignment(this.state.enteredAssignment);
+    this.setState({
+      enteredAssignment: ''
+    });
+    this.updateState();
+  }
+
+  uploadAssignment = (text) => {
+    let updates = {};
+    updates[this.state.enteredMember] = text;
+    firebase.database().ref("rooms/" + this.state.roomNumber + "/assignments").update(updates);
+  }
+
   render() {
+    const assignmentsList = (Object.keys(this.state.allAssignments).length > 0) ? (
+      <div>
+        {Object.keys(this.state.allAssignments).map(key => { 
+          return (
+            <Card class="card">
+              <Card.Text>{this.state.allAssignments[key]}</Card.Text>
+              <Card.Text>Tasked to: {key}</Card.Text>
+            </Card>
+          )
+        })}
+      </div>
+    ) : (<div></div>);
+
     return (
     <Container>
-      
-      <h1> Assignments Page</h1>
-  
-      <Card class="card">
-        <Card.Text>
-           Assignment
-        </Card.Text>
-        <Card.Text>
-           by
-        </Card.Text>
-      </Card>
+      <h1>Task Assignment Page</h1>
+      {assignmentsList}
 
       <Card class="card">
-      <Form class="text" onSubmit={this.handleSubmit}>
-        <Form.Control type="text" id="assignment" placeholder="Enter Assignment" onChange={this.handleChange} />
-          <div style={{ marginTop: "5px"}} >      
-          Assigned To: 
-          </div>           
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option>Team Member One</option>
-          </select>
+      <Form class="text" onSubmit={this.handleFormSubmit}>
+        <Form.Group controlId="assignmentInput">
+          <Form.Control 
+            type="text" 
+            id="enteredAssignment" 
+            placeholder="Enter text" 
+            value={this.state.enteredAssignment}
+            onChange={this.handleInputChange} 
+          />
+        </Form.Group>
+        <Form.Group controlId="textInput">
+          <h4>Assign To:</h4>
+          <Form.Control 
+            type="text" 
+            id="enteredMember" 
+            placeholder="Enter text" 
+            value={this.state.enteredMember}
+            onChange={this.handleInputChange} 
+          />
+        </Form.Group>          
+        
         <Button style={{ marginLeft: "150px"}} variant="light" value="Submit" id="submit" type="submit">Submit </Button>    
       </Form>
       </Card>
